@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+
   $("form#zmconnector-registration-form").submit(function (e) {
     e.preventDefault();
 
@@ -14,9 +15,10 @@ jQuery(document).ready(function ($) {
       url: zmConnectorAjax.ajax_url,
       data: formData,
       success: function (response) {
+        console.log(response);
         if (response.success) {
           $('input[name="zmconnector_access_token"]').val(
-            response.data.access_token
+            response.data.accessToken
           );
           // Optionally, remove any existing notices and display a success message
           $(".zmconnector-notice").remove();
@@ -32,6 +34,7 @@ jQuery(document).ready(function ($) {
       },
     });
   });
+
 
   function displayAdminNotice(message, type) {
     var noticeClass = type === 'error' ? 'notice-error' : 'notice-success';
